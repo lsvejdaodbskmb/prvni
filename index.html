@@ -6,6 +6,8 @@
     <script>
         const HOST = window.location.protocol + "//" + window.location.hostname + ((window.location.port) ? ":" + window.location.port : "") + window.location.pathname;
         function volaniSluzby() {
+            setInterval(obnovZpravy, 1000);
+
             let url = HOST+"datumy.php";
             fetch(url).then(function(response) {
                 response.text().then(function(text) {
@@ -15,6 +17,17 @@
                 });
             });
         }
+        function obnovZpravy() {
+            let url = HOST+"chat/seznamzprav.php";
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    let obj = JSON.parse(text);
+                    document.getElementById("zpravy").innerHTML =
+                        text;
+                });
+            });
+        }
+
     </script>
 </head>
 <body onload="volaniSluzby()">
@@ -22,6 +35,13 @@
 <h1>Volani vzdalene sluzby v PHP</h1>
 
 <div id="vystup">...</div>
+
+<h1>Chat</h1>
+
+<div id="zpravy">...</div>
+<input type="text" id="zprava">
+<input type="button" value="Odesli">
+
 
 </body>
 </html>
