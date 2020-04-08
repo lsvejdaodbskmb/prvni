@@ -10,7 +10,7 @@ if (file_exists("data.json")) { //pokud soubor existuje, tak se z nej nacte sezn
 $data = array();
 $data["datum"] = Date("d.m.Y");
 $data["cas"] = Date("H:i:s");
-$data["zprava"] = "test"; //zatim natvrdo text zpravy
+$data["zprava"] = $_GET["z"]; //parametry z url jsou v promenne $_GET
 
 array_push($zpravy, $data); //pridani zpravy de seznamu zprav
 
