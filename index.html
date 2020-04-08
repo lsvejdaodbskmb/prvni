@@ -22,8 +22,11 @@
             fetch(url).then(function(response) {
                 response.text().then(function(text) {
                     let obj = JSON.parse(text);
-                    document.getElementById("zpravy").innerHTML =
-                        text;
+                    let s = "";
+                    for (let z of obj) {
+                        s = s + z.datum + " " + z.cas + ": " + z.zprava + "<br>";
+                    }
+                    document.getElementById("zpravy").innerHTML = s;
                 });
             });
         }
