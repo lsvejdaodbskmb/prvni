@@ -17,6 +17,15 @@
                 });
             });
         }
+        function odesliZpravu() {
+            let zprava = document.getElementById("zprava").value;
+            let url = HOST+"chat/pridejzpravu.php?z="+zprava;
+            fetch(url).then(function(response) {
+                response.text().then(function(text) {
+                    //v podstate nemusim delat nic
+                });
+            });
+        }
         function obnovZpravy() {
             let url = HOST+"chat/seznamzprav.php";
             fetch(url).then(function(response) {
@@ -43,7 +52,7 @@
 
 <div id="zpravy">...</div>
 <input type="text" id="zprava">
-<input type="button" value="Odesli">
+<input type="button" value="Odesli" onclick="odesliZpravu()">
 
 
 </body>
